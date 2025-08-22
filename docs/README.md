@@ -12,7 +12,8 @@
 </p>
 
 ## 🔥 News
-- *2024.8.14*: We’re excited to announce the release of CURE’s paper and the model.
+- *2024.8.14*: We’re excited to announce the release of CURE’s [paper](https://arxiv.org/abs/2508.11016).
+- *2024.8.22*: We’re excited to announce the release of CURE’s [model](https://huggingface.co/bytedance-research/CURE).
 
 ## 📚 Algorithm Overview
 ![](https://github.com/Bytedance-CURE/CURE/blob/master/main.png) 
