@@ -5,10 +5,10 @@
 </p>
 
 <p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg" alt="arXiv"></a>
-  <a href="https://huggingface.co/BetuBin/CURE_Optimal_Model"><img src="https://img.shields.io/badge/HuggingFace-Model-blue?logo=huggingface&logoColor=white" alt="Hugging Face Model"></a>
+  <a href="https://arxiv.org/abs/2508.11016"><img src="https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg" alt="arXiv"></a>
+  <a href="https://huggingface.co/bytedance-research/CURE"><img src="https://img.shields.io/badge/HuggingFace-Model-blue?logo=huggingface&logoColor=white" alt="Hugging Face Model"></a>
   <a href="https://huggingface.co/datasets/BytedTsinghua-SIA/DAPO-Math-17k"><img src="https://img.shields.io/badge/HuggingFace-Dataset-orange?logo=huggingface" alt="Hugging Face Dataset"></a>
-  <a href="https://github.com/Bytedance-CURE/CURE/"><img src="https://img.shields.io/github/stars/Bytedance-CURE/CURE?style=social" alt="GitHub Repo stars"></a>
+  <a href="https://github.com/bytedance/CURE/"><img src="https://img.shields.io/github/stars/bytedance/CURE?style=social" alt="GitHub Repo stars"></a>
 </p>
 
 ## 🔥 News
@@ -16,24 +16,24 @@
 - *2024.8.22*: We’re excited to announce the release of CURE’s [model](https://huggingface.co/bytedance-research/CURE).
 
 ## 📚 Algorithm Overview
-![](https://github.com/Bytedance-CURE/CURE/blob/master/main.png) 
+![](https://github.com/bytedance/CURE/blob/main/main.png) 
 
 In Stage 1, given an input query 
 $q$, the policy model produces a pool of candidate responses. We compute token-level entropy to identify critical tokens (high entropy), extract the clauses immediately preceding those tokens, append them to 
 $q$ to form refined prompts, and query the model again. The newly generated responses are aggregated with the original ones and jointly optimized within a single group. In Stage 2, we continue training to translate the exploration bonus into realized performance.
 
 ## 📚 Experimental Results
-![](https://github.com/Bytedance-CURE/CURE/blob/master/entropy.jpg)
+![](https://github.com/bytedance/CURE/blob/main/entropy.jpg)
 
 Comparison of Entropy comparison of CURE-First-Stage and other methods at temperature 1.0.
 
-![](https://github.com/Bytedance-CURE/CURE/blob/master/main_table.jpg)
+![](https://github.com/bytedance/CURE/blob/main/main_table.jpg)
 
 CURE performs competitively compared with other algorithms. We report avg@32 for AIME24, AIME25, and AMC23 and avg@1 for others.
 
 
 ## ⚙️ Installation
-Our code has been incorporated into VERL as a plugin, located in [recipe-CURE](https://github.com/Bytedance-CURE/CURE/tree/master/recipe)
+Our code has been incorporated into VERL as a plugin, located in [recipe-CURE](https://github.com/bytedance/CURE/tree/main/recipe)
 ### 1. Prepare the environment
 Exactly the same as the environment setup in [verl](https://github.com/volcengine/verl), no additional configuration is required. In our actual workflow, we executed the following operations directly within the released image.
 ```bash
@@ -43,7 +43,7 @@ pip install --no-deps git+https://github.com/=hiyouga/MathRuler.git
 pip install math_verify
 ```
 ### 2. Prepare the dataset and model
-For training, simply download the dataset from [DAPO-Math-17K](https://huggingface.co/datasets/BytedTsinghua-SIA/DAPO-Math-17k) and set its path as `TRAIN_FILE` in the [startup script](https://github.com/Bytedance-CURE/CURE/blob/master/recipe/dapo_cure/run_cure_stage_1.sh). We use [Qwen-2.5-Math-Base](https://huggingface.co/Qwen/Qwen2.5-Math-7B) as the training baseline; download it and set its path as `CKPTS_DIR` in the same script.
+For training, simply download the dataset from [DAPO-Math-17K](https://huggingface.co/datasets/BytedTsinghua-SIA/DAPO-Math-17k) and set its path as `TRAIN_FILE` in the [startup script](https://github.com/bytedance/CURE/blob/main/recipe/CURE_First_Stage/run_cure_stage_1.sh). We use [Qwen-2.5-Math-Base](https://huggingface.co/Qwen/Qwen2.5-Math-7B) as the training baseline; download it and set its path as `CKPTS_DIR` in the same script.
 > We also recommend downloading [AIME-2024](https://huggingface.co/datasets/BytedTsinghua-SIA/AIME-2024) and setting its path as `TEST_FILE` in the same script.
 
 
